@@ -1,0 +1,59 @@
+<div id="login" fxLayout="column">
+
+    <div id="login-form-wrapper" fxLayout="column" fxLayoutAlign="center center">
+
+        <div id="login-form" >
+<!--             [@animate]="{value:'*',params:{duration:'300ms',y:'100px'}}">-->
+
+            <div class="logo">
+                <img src="assets/images/logos/med.jpg" style="width: 100%;height: 100%">
+            </div>
+
+            <div class="title">LOGIN TO YOUR ACCOUNT</div>
+
+
+
+
+<div *ngIf="isLoggedIn; else loggedOut">
+  Logged in as {{roles}}.
+</div>
+
+<ng-template #loggedOut>
+
+    <form name="loginForm" (ngSubmit)="onSubmit()" #f="ngForm" novalidate >
+
+        <div for="username">Username</div>
+        <input   type="text" class="form-control" name="username" [(ngModel)]= "loginForm.username" #username="ngModel"
+          required />
+        <div *ngIf="f.submitted && username.invalid">
+          <div *ngIf="username.errors.required">Username is required</div>
+        </div>
+
+
+        <div for = "password">Password</div>
+        <input   type="password" class="form-control" name="password" [(ngModel)]="loginForm.password" #password="ngModel"
+          required minlength="6" />
+        <div *ngIf="f.submitted && password.invalid">
+          <div *ngIf="password.errors.required">Password is required</div>
+          <div *ngIf="password.errors.minlength">Password must be at least 6 characters</div>
+        </div>
+
+      <div class="form-group">
+          <button mat-raised-button color="accent" class="submit-button" aria-label="LOG IN"
+                  [disabled]="loginForm.invalid">
+              LOGIN
+          </button>
+        <div *ngIf="f.submitted && isLoginFailed" class="alert alert-danger">
+          Login failed: {{errorMessage}}
+        </div>
+      </div>
+    </form>
+
+    <p>Don't have an account?</p>
+    <a href="signup" class="btn btn-success">Sign Up</a>
+
+</ng-template>
+
+        </div>
+    </div>
+</div>

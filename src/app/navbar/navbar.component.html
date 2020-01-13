@@ -1,0 +1,35 @@
+<div id="navbar-collapse">
+<div class="overlay"></div>
+
+<!-- Top Bar -->
+<nav class="navbar">
+  <div class="container-fluid " >
+    <div class="navbar-header" style="display:flex;width: 100%" >
+      <a href="javascript:void(0);" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false"></a>
+      <a href="javascript:void(0);" class="bars"></a>
+        <div class="navbar-brand" routerLinkActive="active" style="display:flex; justify-content: space-between ;width: 100%">
+          <div style="display:flex;width:100%">
+            <div class="nav-item" >
+            <a class="nav-link" href="#">Couture bébé</a>
+            </div>
+            <div class="nav-item" >
+              <a class="nav-link" routerLink="home">Home</a>
+            </div>
+            <div *ngIf="authority === 'user'" class="nav-item">
+              <a class="nav-link"  routerLink="user">User Board</a>
+            </div>
+            <div *ngIf="authority === 'admin'" class="nav-item">
+              <a class="nav-link" routerLink="admin">Admin Board</a>
+            </div>
+            <div *ngIf="authority === 'pm'" class="nav-item">
+              <a class="nav-link" routerLink="pm">PM Board</a>
+            </div>
+          </div>
+          <div style="display:flex" *ngIf="!authority" class="nav-item">
+            <a class="nav-link" routerLink="auth/login">Login</a>
+          </div>
+        </div>
+    </div>
+  </div>
+</nav>
+</div>
